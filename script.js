@@ -42,10 +42,11 @@ const card = [
     },
 ];
 
-console.log(card);
+
 
 //variabile con l'inserimento della classe container
 const cont = document.querySelector(".team-container");
+let semaforo = false;
 
   
 
@@ -59,7 +60,9 @@ function insertCard() {
         cont.append(newCard);
         
     }
-    
+
+   semaforo = true;
+
 }
 
 
@@ -77,11 +80,13 @@ function createCard(member) {
     //crea l'immagine contenuta
     let newImg = document.createElement('img');
     //controllo se l'immagine e nella cartella img
-    
-    newImg.src = "img/" + member.image;
- 
+    if (!semaforo) {
+        newImg.src = "img/" + member.image;
+    } else {
+        newImg.src = member.image;
+    }
     //alt per l'immagine
-    newImg.alt = member.name
+    newImg.alt = member.name;
 
     //aggiungi gli elementi uno dentro l'altro
     boxImg.append(newImg);
@@ -107,3 +112,30 @@ function createCard(member) {
     return newCard;
     
 }
+
+
+const btn = document.getElementById("addMemberButton");
+btn.addEventListener("click", 
+
+function addCard() {
+    //crea oggetto con le informazioni del form
+    let newInsert = {
+       name: document.getElementById("name").value,
+       role: document.getElementById("role").value,
+       image: document.getElementById("image").value,
+
+   }
+    //inserisci nuovo oggetto nell array
+   card.push(newInsert);
+    
+   let newCardInsert = createCard(newInsert);
+   cont.append(newCardInsert);
+   
+}
+
+
+)
+
+
+
+
