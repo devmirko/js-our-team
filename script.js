@@ -47,7 +47,7 @@ console.log(card);
 //variabile con l'inserimento della classe container
 const cont = document.querySelector(".team-container");
 
- let insertCardbool = false; 
+  
 
 //esegui la funzione
 insertCard();
@@ -77,18 +77,33 @@ function createCard(member) {
     //crea l'immagine contenuta
     let newImg = document.createElement('img');
     //controllo se l'immagine e nella cartella img
-    if (!insertCardbool) {
-        newImg.src = "img/" + member.image;
-    } else {
-        newImg.src = member.image;
-    }
-      //alt per l'immagine
-      newImg.alt = member.name
+    
+    newImg.src = "img/" + member.image;
+ 
+    //alt per l'immagine
+    newImg.alt = member.name
 
     //aggiungi gli elementi uno dentro l'altro
     boxImg.append(newImg);
     newCard.append(boxImg);
 
-   return newCard;
+    // aggiungi l'elemento card-text
+    let cardText = document.createElement('div');
+    cardText.classList.add("card-text")
+    //aggiungi il nome 
+    let name = document.createElement("h3");
+    name.innerHTML = member.name;
+    //aggiungi il ruolo
+    let role = document.createElement("p");
+    role.innerHTML = member.role;
+
+    //aggiungi l'elemento p e h3 a card-text
+    cardText.append(name);
+    cardText.append(role);
+    //aggiugni card-text a card
+    newCard.append(cardText);
+
+
+    return newCard;
     
 }
